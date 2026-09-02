@@ -1,6 +1,8 @@
-### EX7 Implementation of Link Analysis using HITS Algorithm
-### DATE: 
-### AIM: To implement Link Analysis using HITS Algorithm in Python.
+# EX7 Implementation of Link Analysis using HITS Algorithm
+## NAME: S KANUSHA SREE
+## REGISTER NUMBER:212224040149
+### DATE: 02/09/2026
+## AIM: To implement Link Analysis using HITS Algorithm in Python.
 ### Description:
 <div align = "justify">
 The HITS (Hyperlink-Induced Topic Search) algorithm is a link analysis algorithm used to rank web pages. It identifies authority and hub pages 
@@ -31,7 +33,7 @@ in a network of web pages based on the structure of the links between them.
 6. ***Visualization:***
     <p>    Visualize using bar chart to represent authority and hub scores.
 
-### Program:
+## Program:
 
 ```python
 import numpy as np
@@ -44,17 +46,17 @@ def hits_algorithm(adjacency_matrix, max_iterations=100, tol=1.0e-6):
     
     for i in range(max_iterations):
         # Authority update
-
-             /*WRITE YOUR CODE HERE
-        
+        new_authority_scores = np.dot(adjacency_matrix.T, hub_scores)
+        new_authority_scores /= np.sum(new_authority_scores)
         # Hub update
 
-             /*WRITE YOUR CODE HERE
-        
-        # Check convergence
+        new_hub_scores = np.dot(adjacency_matrix, new_authority_scores)
+        new_hub_scores /= np.sum(new_hub_scores)
 
-             /*WRITE YOUR CODE HERE
-        
+        # Check convergence
+        authority_diff = np.sum(np.abs(new_authority_scores - authority_scores))
+        hub_diff = np.sum(np.abs(new_hub_scores - hub_scores))
+
         if authority_diff < tol and hub_diff < tol:
             break
         
@@ -66,9 +68,10 @@ def hits_algorithm(adjacency_matrix, max_iterations=100, tol=1.0e-6):
 # Example adjacency matrix (replace this with your own data)
 # For simplicity, using a random adjacency matrix
 adj_matrix = np.array([
-    [0, 1, 1],
-    [1, 0, 0],
-    [1, 0, 0]
+    [0, 1, 1, 0],
+    [0, 0, 1, 1],
+    [1, 1, 0, 0],
+    [0, 0, 1, 0]
 ])
 
 # Run HITS algorithm
@@ -92,6 +95,9 @@ plt.tight_layout()
 plt.show()
 ```
 
-### Output:
+## Output:
+<img width="947" height="689" alt="image" src="https://github.com/user-attachments/assets/406e3fb0-69f4-4277-be05-c16c0289f527" />
 
-### Result:
+
+## Result:
+The HITS algorithm calculates authority and hub scores of web pages iteratively using the web link structure and adjacency matrix.
